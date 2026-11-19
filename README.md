@@ -11,7 +11,7 @@ detectar obstáculos, planear maniobras y ubicar sensores.
 
 | Entregable | Dónde está |
 |---|---|
-| Informe técnico en PDF (12 páginas de cuerpo + anexos) | [`informe/final/informe_final_grupo6.pdf`](informe/final/informe_final_grupo6.pdf) |
+| Informe técnico en PDF (13 páginas de cuerpo + anexos) | [`informe/final/informe_final_grupo6.pdf`](informe/final/informe_final_grupo6.pdf) |
 | Código de los seis componentes | carpetas `c1_…` a `c6_…` (tabla de abajo) |
 | README reproducible | este archivo (instalación, comandos y semilla fija) |
 | Pruebas | `test_*.py` dentro de cada componente; `python -m pytest -q` ejecuta las 44 |

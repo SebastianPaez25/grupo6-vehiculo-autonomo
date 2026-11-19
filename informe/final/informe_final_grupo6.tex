@@ -248,6 +248,16 @@ Un punto cae en el vóxel $(\lfloor x/r\rfloor,\lfloor y/r\rfloor,\lfloor z/r\rf
 $m=2^k$ cubetas, hash espacial de Teschner + multiplicativo) guarda solo los vóxeles ocupados.
 Si una clave nueva haría $\alpha=N/m>3/4$, se duplica $m$ y se reinsertan las $N$ claves.
 
+\begin{algorithm}[H]
+\caption{\textsc{Insertar}$(k)$ \small(tabla con $m$ cubetas y $N$ claves)}
+\small
+\begin{algorithmic}[1]
+\If{$k$ está en la cubeta $h(k)\bmod m$} sumar 1 a su contador; \Return \Comment{$\Th(1+\alpha)$}\EndIf
+\If{$(N+1)/m>3/4$} crear $2m$ cubetas y reinsertar las $N$ claves; $m\gets2m$ \Comment{$\Th(N)$, poco frecuente}\EndIf
+\State agregar $(k,1)$ a la cubeta $h(k)\bmod m$; $N\gets N+1$ \Comment{$\Th(1)$}
+\end{algorithmic}
+\end{algorithm}
+
 \textbf{Método contable.} Costo real: 1 por colocación, $N+1$ si la inserción duplica. Costo
 amortizado $\hat c=3$ por inserción nueva (1 para colocarse, 1 para moverse en el próximo rehash y 1
 para mover una clave antigua) y $\hat c=1$ por actualización.
@@ -264,9 +274,19 @@ $N=\Th((L/r)^2)$ y el ahorro es $\Th(L/r)$.
 % ------------------------------------------------------------- C3
 \subsection{C3 -- Voraz: cobertura mínima de $[0,L]$ con intervalos}
 
-\textbf{Algoritmo.} Ordenar los tramos por inicio $a$ (merge sort). Con $[0,x]$ cubierto, de los tramos
-con $a\le x$ elegir el de mayor $b$; si ninguno pasa de $x$ hay un hueco (no existe cobertura). El índice
-del barrido nunca retrocede: $\Th(n)$ tras ordenar; total $\Th(n\log n)$.
+\begin{algorithm}[H]
+\caption{\textsc{CoberturaMínima}$(T, L)$ \small($T$: tramos $[a_i,b_i]$)}
+\small
+\begin{algorithmic}[1]
+\State ordenar $T$ por $a$ con merge sort; $x\gets0$;\ $i\gets1$;\ $S\gets\emptyset$ \Comment{$\Th(n\log n)$}
+\While{$x<L$}
+  \State $mejor\gets$ tramo de mayor $b$ entre los $T_i,T_{i+1},\dots$ con $a\le x$ (avanza $i$) \Comment{$i$ nunca retrocede}
+  \If{no hay tramo o $b_{mejor}\le x$} \Return ``no existe cobertura'' \Comment{hay un hueco}\EndIf
+  \State $S\gets S\cup\{mejor\}$;\ $x\gets b_{mejor}$
+\EndWhile
+\State \Return $S$ \Comment{barrido $\Th(n)$; total $\Th(n\log n)$}
+\end{algorithmic}
+\end{algorithm}
 
 \textbf{Prueba por intercambio.} Sea $O$ óptima para cubrir $(x,L]$. Algún $o\in O$ cubre los puntos
 justo a la derecha de $x$, luego $a_o\le x$; la regla da $b_g\ge b_o$, así que $g\supseteq o\cap[x,L]$.
@@ -337,6 +357,17 @@ baja $h-1$ niveles y recorre la cadena de hojas:
 (h-1)+\Big\lceil\tfrac kb\Big\rceil\ \le\ \text{lecturas}\ \le\ h+\Big\lceil\tfrac kb\Big\rceil=O(\log_B N+k/B),
 \]
 el $+1$ aparece cuando el rango empieza o termina en el borde de una hoja.
+\begin{algorithm}[H]
+\caption{\textsc{Rango}$(t_1,t_2)$ \small(cada nodo es un bloque; toda lectura pasa por \texttt{DiscoSimulado})}
+\small
+\begin{algorithmic}[1]
+\State $u\gets$ raíz \Comment{1 lectura}
+\While{$u$ no es hoja} $u\gets$ \Call{LeerBloque}{hijo de $u$ que contiene $t_1$} \Comment{$h-1$ lecturas}\EndWhile
+\Repeat\ devolver los registros de $u$ con $t_1\le t\le t_2$;\ $u\gets$ \Call{LeerBloque}{siguiente hoja}
+\Until{la última clave leída supera $t_2$ o no hay más hojas} \Comment{$\approx\lceil k/b\rceil$ lecturas}
+\end{algorithmic}
+\end{algorithm}
+
 \textbf{Inserción} (registros que llegan tarde): $h$ lecturas y $1+2s+[\text{la raíz se divide}]$
 escrituras, con $s$ el número de nodos divididos. Una hoja se divide como mucho una vez cada $\approx b/2$
 inserciones, así que el costo amortizado es $h$ lecturas y $O(1)$ escrituras.
@@ -346,8 +377,17 @@ inserciones, así que el costo amortizado es $h$ lecturas y $O(1)$ escrituras.
 
 Intersecciones = vértices, calles = aristas; un sensor en un vértice vigila sus calles. Encontrar una
 cobertura mínima es NP-difícil (Karp, 1972).
-\textbf{Algoritmo}: recorrer las aristas; si ninguno de los extremos de $(u,v)$ está en $C$, agregar ambos
-(la arista entra al emparejamiento $M$). Con un arreglo de marcas cuesta $\Th(V+E)$.
+\begin{algorithm}[H]
+\caption{\textsc{Cobertura2Aprox}$(V, E)$}
+\small
+\begin{algorithmic}[1]
+\State $C\gets\emptyset$;\ $M\gets\emptyset$;\ marcas$[v]\gets$ falso para todo $v$ \Comment{$\Th(V)$}
+\For{cada arista $(u,v)\in E$} \Comment{$\Th(E)$}
+  \If{no marcas$[u]$ \textbf{y} no marcas$[v]$} $C\gets C\cup\{u,v\}$;\ $M\gets M\cup\{(u,v)\}$; marcar $u$ y $v$ \EndIf
+\EndFor
+\State \Return $C$ \Comment{total $\Th(V+E)$}
+\end{algorithmic}
+\end{algorithm}
 
 \begin{teorema}[Razón 2]
 $C$ es una cobertura de vértices y $|C|\le2\cdot OPT$.
