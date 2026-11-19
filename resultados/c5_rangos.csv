@@ -1,0 +1,7 @@
+k,lect_min,lect_mediana,lect_max,pred_inferior,pred_superior,dentro,recorrido_completo
+1,3,3,3,3,4,True,5883
+10,3,3,4,3,4,True,5883
+100,3,4,4,3,4,True,5883
+1000,8,9,9,8,9,True,5883
+10000,61,62,62,61,62,True,5883
+100000,591,591,592,591,592,True,5883

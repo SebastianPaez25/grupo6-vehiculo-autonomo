@@ -1,0 +1,30 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13, pytest
+plugins: platformdirs-4.13.5, anyio-4.15.1
+collecting ... collected 23 items
+
+comun/test_ordenamiento.py::test_ordena_como_referencia PASSED           [  4%]
+comun/test_ordenamiento.py::test_es_estable PASSED                       [  8%]
+datos/test_generador.py::test_semilla_fija_reproducible PASSED           [ 13%]
+datos/test_generador.py::test_tamanos_y_rangos PASSED                    [ 17%]
+c1_par_mas_cercano/test_par_cercano.py::test_coincide_con_fuerza_bruta[uniforme] PASSED [ 21%]
+c1_par_mas_cercano/test_par_cercano.py::test_coincide_con_fuerza_bruta[agrupada] PASSED [ 26%]
+c1_par_mas_cercano/test_par_cercano.py::test_coincide_con_fuerza_bruta[vertical] PASSED [ 30%]
+c1_par_mas_cercano/test_par_cercano.py::test_par_devuelto_tiene_esa_distancia PASSED [ 34%]
+c1_par_mas_cercano/test_par_cercano.py::test_puntos_repetidos_y_colineales PASSED [ 39%]
+c1_par_mas_cercano/test_par_cercano.py::test_franja_a_lo_sumo_7_vecinos PASSED [ 43%]
+c1_par_mas_cercano/test_par_cercano.py::test_menos_de_dos_puntos PASSED  [ 47%]
+c2_mapa_voxeles/test_tabla_hash.py::test_insertar_y_obtener PASSED       [ 52%]
+c2_mapa_voxeles/test_tabla_hash.py::test_factor_de_carga_acotado PASSED  [ 56%]
+c2_mapa_voxeles/test_tabla_hash.py::test_metodo_contable_banco_nunca_negativo PASSED [ 60%]
+c2_mapa_voxeles/test_tabla_hash.py::test_mapa_cuenta_puntos_por_voxel PASSED [ 65%]
+c2_mapa_voxeles/test_tabla_hash.py::test_espacio_tabla_vs_rejilla PASSED [ 69%]
+c2_mapa_voxeles/test_tabla_hash.py::test_capacidad_invalida PASSED       [ 73%]
+c3_cobertura_intervalos/test_cobertura.py::test_ejemplo_basico PASSED    [ 78%]
+c3_cobertura_intervalos/test_cobertura.py::test_tramos_que_solo_se_tocan PASSED [ 82%]
+c3_cobertura_intervalos/test_cobertura.py::test_hueco_lanza_excepcion PASSED [ 86%]
+c3_cobertura_intervalos/test_cobertura.py::test_voraz_es_optimo_contra_fuerza_bruta PASSED [ 91%]
+c3_cobertura_intervalos/test_cobertura.py::test_contraejemplo_mas_largo_primero PASSED [ 95%]
+c3_cobertura_intervalos/test_cobertura.py::test_instancia_grande_valida_y_lineal_en_barrido PASSED [100%]
+
+============================== 23 passed in 1.30s ==============================

@@ -1,0 +1,108 @@
+{
+  "pendiente_tiempo": 1.1216428806752214,
+  "pendientes_por_rango": {
+    "n<=2^14": 1.1291713949951354,
+    "n>=2^14": 1.163809279649941
+  },
+  "us_por_insercion": {
+    "1024": 2.251797851571258,
+    "2048": 2.154265136722344,
+    "4096": 2.251136962890671,
+    "8192": 4.056282714843401,
+    "16384": 2.5676580810551215,
+    "32768": 2.829627136230299,
+    "65536": 3.6083595886231974,
+    "131072": 4.010797080993586,
+    "262144": 4.017576568603556,
+    "524288": 4.80197736740112,
+    "1048576": 5.024573518753035
+  },
+  "contable": {
+    "n": 1048576,
+    "costo_real_total": 2621434,
+    "cota_3n": 3145728,
+    "max_C(n)/n": 2.9999898274868935,
+    "min_C(n)/n_desde_64": 1.9375,
+    "banco_minimo": 2.0,
+    "redimensionamientos": 18,
+    "capacidad_final": 2097152,
+    "factor_carga_final": 0.5
+  },
+  "espacio": {
+    "pendiente_N_vs_L/r": 1.9914030755581118,
+    "pendiente_tabla_vs_L/r": 1.9972173838936746,
+    "pendiente_densa_vs_L/r": 3.000000000000002,
+    "pendiente_tabla_vs_N": 1.0028937529702913,
+    "unidades_tabla_sobre_N": [
+      3.0603621730382295,
+      3.14900314795383,
+      3.1294515206654534,
+      3.1331250203430656,
+      3.130559167750325
+    ],
+    "bytes_por_voxel_tabla_python": [
+      405.98792756539234,
+      410.79958027282265,
+      410.6857291395893,
+      411.3119161540214,
+      411.67691807542263
+    ],
+    "filas": [
+      {
+        "L/r": 16,
+        "r": 4.0,
+        "puntos": 1024,
+        "N_ocupados": 497,
+        "capacidad_m": 1024,
+        "unidades_tabla": 1521,
+        "celdas_densa": 4096,
+        "bytes_tabla_python": 201776,
+        "bytes_densa_int32": 16384
+      },
+      {
+        "L/r": 32,
+        "r": 2.0,
+        "puntos": 4096,
+        "N_ocupados": 1906,
+        "capacidad_m": 4096,
+        "unidades_tabla": 6002,
+        "celdas_densa": 32768,
+        "bytes_tabla_python": 782984,
+        "bytes_densa_int32": 131072
+      },
+      {
+        "L/r": 64,
+        "r": 1.0,
+        "puntos": 16384,
+        "N_ocupados": 7694,
+        "capacidad_m": 16384,
+        "unidades_tabla": 24078,
+        "celdas_densa": 262144,
+        "bytes_tabla_python": 3159816,
+        "bytes_densa_int32": 1048576
+      },
+      {
+        "L/r": 128,
+        "r": 0.5,
+        "puntos": 65536,
+        "N_ocupados": 30723,
+        "capacidad_m": 65536,
+        "unidades_tabla": 96259,
+        "celdas_densa": 2097152,
+        "bytes_tabla_python": 12636736,
+        "bytes_densa_int32": 8388608
+      },
+      {
+        "L/r": 256,
+        "r": 0.25,
+        "puntos": 262144,
+        "N_ocupados": 123040,
+        "capacidad_m": 262144,
+        "unidades_tabla": 385184,
+        "celdas_densa": 16777216,
+        "bytes_tabla_python": 50652728,
+        "bytes_densa_int32": 67108864
+      }
+    ]
+  }
+}
